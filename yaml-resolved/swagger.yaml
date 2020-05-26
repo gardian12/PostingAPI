@@ -1,0 +1,297 @@
+openapi: 3.0.0
+info:
+  title: BMW Posting WebService
+  description: |
+    Generic webservice for financial posting consumed by SAP CFIN.
+    Aligned to TA080.
+  contact:
+    email: marko.graf@bmw.com
+  license:
+    name: BMW Property
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/gardian12/BMW_Posting_WebService/1.0.0
+  description: Dummy Server
+tags:
+- name: posting
+  description: Financial posting
+- name: admins
+  description: Secured Admin-only calls
+- name: developers
+  description: Operations available to regular developers
+paths:
+  /posting:
+    post:
+      tags:
+      - posting
+      summary: add postings
+      description: |
+        By passing in the appropriate options, you can search for
+        available inventory in the system
+      operationId: addPostings
+      requestBody:
+        description: send new postings
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Control'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Control'
+        required: true
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReturnCode'
+              example:
+                code: 200
+                message: successful operation
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReturnCode'
+              example:
+                code: 200
+                message: successful operation
+        "400":
+          description: bad input parameter
+components:
+  schemas:
+    Control:
+      required:
+      - postings
+      - sender
+      type: object
+      properties:
+        sender:
+          type: string
+          description: Sending system
+          example: Innosys
+        simulate:
+          type: boolean
+          description: Posting simultation
+          example: false
+        postings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Postings'
+      xml:
+        name: Control
+    Postings:
+      type: array
+      xml:
+        name: Postings
+      items:
+        $ref: '#/components/schemas/Posting'
+    Posting:
+      required:
+      - blart
+      - bldat
+      - budat
+      - bukrs
+      - waers
+      type: object
+      properties:
+        xblnr:
+          type: string
+          description: Reference Document Number
+          example: "7451413411"
+        blart:
+          type: string
+          description: Document Type
+          example: SA
+        bktxt:
+          type: string
+          description: Document Header Text
+          example: Header Text
+        bldat:
+          type: string
+          description: Document Date in Document
+          example: "20200525"
+        budat:
+          type: string
+          description: Posting Date in Document
+          example: "20200525"
+        bukrs:
+          type: string
+          description: Company Code
+          example: A1
+        monat:
+          type: string
+          description: Fiscal Period of Financial Document
+          example: "05"
+        waers:
+          type: string
+          description: ISO Code of Document Currency
+          example: EUR
+        ldgrp:
+          type: string
+          description: Ledger group
+          example: 0L
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+        taxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tax'
+      xml:
+        name: Posting
+    Item:
+      required:
+      - newko
+      - wrbtr
+      type: object
+      properties:
+        newko:
+          type: string
+          description: GL Account
+          example: "1896123"
+        wrbtr:
+          type: string
+          description: Amount in Document Currency
+          example: "37263.04"
+        dmbtr:
+          type: string
+          description: Amount in Company Code Currency
+          example: "15234.83"
+        sgtxt:
+          type: string
+          description: Item Text
+          example: Item Text
+        zuonr:
+          type: string
+          description: Assignment Number
+          example: "3456787654"
+        mwskz:
+          type: string
+          description: Sales Tax Code
+          example: 1V
+        txjcd:
+          type: string
+          description: Tax Jurisdiction Code
+          example: TAXUSJ
+        matnr:
+          type: string
+          description: Material Number
+          example: "1234543212"
+        menge:
+          type: string
+          description: Quantity
+          example: "1"
+        meins:
+          type: string
+          description: ISO Code of Base Unit of Measure
+          example: PC
+        prctr:
+          type: string
+          description: Profit Center
+          example: CA
+        segment:
+          type: string
+          description: Segment for Segmental Reporting
+          example: BMW
+        kostl:
+          type: string
+          description: Cost Center
+          example: "2020"
+        projk:
+          type: string
+          description: Work Breakdown Structure Element (WBS Element)
+          example: A1002020202020200989
+        aufnr:
+          type: string
+          description: Internal Order Number
+          example: "8909876"
+        kndnr:
+          type: string
+          description: Customer
+          example: "1001234567"
+        kdgrp:
+          type: string
+          description: Customer Group
+          example: "09"
+        kmland:
+          type: string
+          description: Country Key
+          example: DE
+        vbund:
+          type: string
+          description: Company ID of Trading Partner
+          example: A1
+        zfbdt:
+          type: string
+          description: Assignment Number
+          example: "20200701"
+        zlsch:
+          type: string
+          description: Payment Method
+          example: F
+        zlspr:
+          type: boolean
+          description: Payment Block Key
+          example: false
+        bvtyp:
+          type: string
+          description: Partner Bank Type
+          example: "001"
+        lzbkz:
+          type: string
+          description: State Central Bank Indicator
+          example: "020"
+        newum:
+          type: string
+          description: Special Ledger Indicator
+          example: A
+        zterm:
+          type: string
+          description: Terms of Payment Key
+          example: "0001"
+      xml:
+        name: Item
+    Tax:
+      type: object
+      properties:
+        mwskz:
+          type: string
+          description: Sales Tax Code
+          example: 1V
+        txjcd:
+          type: string
+          description: Tax Jurisdiction Code
+          example: TAXUSJ
+        fwste:
+          type: string
+          description: Amount in Document Currency
+          example: "0.00"
+        fwbas:
+          type: string
+          description: Tax Base Amount in Transaction Currency
+          example: "37263.04"
+        hwste:
+          type: string
+          description: Amount in Company Code Currency
+          example: "0.00"
+        hwbas:
+          type: string
+          description: Tax Base Amount in Company Code Currency
+          example: "37263.04"
+      xml:
+        name: Tax
+    ReturnCode:
+      required:
+      - code
+      - message
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+      xml:
+        name: ReturnCode
