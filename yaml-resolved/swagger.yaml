@@ -7,11 +7,13 @@ info:
   contact:
     email: marko.graf@bmw.com
   license:
-    name: BMW Property
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
+    name: GNU AGPLv3
+    url: https://spdx.org/licenses/AGPL-3.0-or-later.html
   version: 1.0.0
 servers:
 - url: https://virtserver.swaggerhub.com/gardian12/BMW_Posting_WebService/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: https://dummy.bmw.com/BMW_Posting_WebService/1.0.0
   description: Dummy Server
 tags:
 - name: posting
