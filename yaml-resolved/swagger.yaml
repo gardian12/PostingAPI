@@ -16,10 +16,6 @@ servers:
 tags:
 - name: posting
   description: Financial posting
-- name: admins
-  description: Secured Admin-only calls
-- name: developers
-  description: Operations available to regular developers
 paths:
   /posting:
     post:
