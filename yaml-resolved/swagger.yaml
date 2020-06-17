@@ -13,8 +13,8 @@ info:
 servers:
 - url: https://virtserver.swaggerhub.com/gardian12/BMW_Posting_WebService/1.0.0
   description: SwaggerHub API Auto Mocking
-- url: https://dummy.bmw.com/BMW_Posting_WebService/1.0.0
-  description: Dummy Server
+- url: http://tgfedi30.bmwgroup.net:8030/sap/opu/odata4/bmw/gfb_odata/default/bmw/gfb_if0041_posting/0001/postingSet
+  description: GFE Server
 tags:
 - name: posting
   description: Financial posting
