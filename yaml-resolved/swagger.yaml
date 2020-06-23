@@ -11,9 +11,7 @@ info:
     url: https://spdx.org/licenses/AGPL-3.0-or-later.html
   version: 1.0.0
 servers:
-- url: https://virtserver.swaggerhub.com/gardian12/BMW_Posting_WebService/1.0.0
-  description: SwaggerHub API Auto Mocking
-- url: http://tgfedi30.bmwgroup.net:8030/sap/opu/odata4/bmw/gfb_odata/default/bmw/gfb_if0041_posting/0001/postingSet
+- url: http://tgfedi30.bmwgroup.net:8030/sap/opu/odata/BMW/GFB_IF0041_SRV_REST_SRV/addPosting
   description: GFE Server
 tags:
 - name: posting
@@ -75,15 +73,9 @@ components:
         postings:
           type: array
           items:
-            $ref: '#/components/schemas/Postings'
+            $ref: '#/components/schemas/Posting'
       xml:
         name: Control
-    Postings:
-      type: array
-      xml:
-        name: Postings
-      items:
-        $ref: '#/components/schemas/Posting'
     Posting:
       required:
       - blart
