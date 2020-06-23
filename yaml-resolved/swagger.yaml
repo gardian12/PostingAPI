@@ -100,11 +100,11 @@ components:
         bldat:
           type: string
           description: Document Date in Document
-          example: "20200525"
+          example: 2020-05-25
         budat:
           type: string
           description: Posting Date in Document
-          example: "20200525"
+          example: 2020-05-25
         bukrs:
           type: string
           description: Company Code
@@ -216,7 +216,7 @@ components:
         zfbdt:
           type: string
           description: Assignment Number
-          example: "20200701"
+          example: 2020-07-01
         zlsch:
           type: string
           description: Payment Method
@@ -224,7 +224,7 @@ components:
         zlspr:
           type: boolean
           description: Payment Block Key
-          example: false
+          example: true
         bvtyp:
           type: string
           description: Partner Bank Type
