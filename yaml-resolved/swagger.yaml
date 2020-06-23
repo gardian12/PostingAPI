@@ -11,10 +11,8 @@ info:
     url: https://spdx.org/licenses/AGPL-3.0-or-later.html
   version: 1.0.0
 servers:
-- url: https://virtserver.swaggerhub.com/gardian12/BMW_Posting_WebService/1.0.0
-  description: SwaggerHub API Auto Mocking
-- url: https://dummy.bmw.com/BMW_Posting_WebService/1.0.0
-  description: Dummy Server
+- url: http://tgfedi30.bmwgroup.net:8030/sap/opu/odata/BMW/GFB_IF0041_SRV_REST_SRV/addPosting
+  description: GFE Server
 tags:
 - name: posting
   description: Financial posting
@@ -75,15 +73,9 @@ components:
         postings:
           type: array
           items:
-            $ref: '#/components/schemas/Postings'
+            $ref: '#/components/schemas/Posting'
       xml:
         name: Control
-    Postings:
-      type: array
-      xml:
-        name: Postings
-      items:
-        $ref: '#/components/schemas/Posting'
     Posting:
       required:
       - blart
@@ -108,11 +100,11 @@ components:
         bldat:
           type: string
           description: Document Date in Document
-          example: "20200525"
+          example: 2020-05-25
         budat:
           type: string
           description: Posting Date in Document
-          example: "20200525"
+          example: 2020-05-25
         bukrs:
           type: string
           description: Company Code
@@ -224,7 +216,7 @@ components:
         zfbdt:
           type: string
           description: Assignment Number
-          example: "20200701"
+          example: 2020-07-01
         zlsch:
           type: string
           description: Payment Method
@@ -232,7 +224,7 @@ components:
         zlspr:
           type: boolean
           description: Payment Block Key
-          example: false
+          example: true
         bvtyp:
           type: string
           description: Partner Bank Type
