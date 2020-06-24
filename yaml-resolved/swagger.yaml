@@ -11,7 +11,7 @@ info:
     url: https://spdx.org/licenses/AGPL-3.0-or-later.html
   version: 1.0.0
 servers:
-- url: http://tgfedi30.bmwgroup.net:8030/sap/opu/odata/BMW/GFB_IF0041_SRV_REST_SRV/addPosting
+- url: http://tgfedi30.bmwgroup.net:8030/sap/opu/odata/BMW/GFB_IF0041_SRV_REST_SRV
   description: GFE Server
 tags:
 - name: posting
