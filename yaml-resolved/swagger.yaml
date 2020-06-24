@@ -100,10 +100,12 @@ components:
         bldat:
           type: string
           description: Document Date in Document
+          format: date
           example: 2020-05-25
         budat:
           type: string
           description: Posting Date in Document
+          format: date
           example: 2020-05-25
         bukrs:
           type: string
@@ -142,13 +144,13 @@ components:
           description: GL Account
           example: "1896123"
         wrbtr:
-          type: string
+          type: integer
           description: Amount in Document Currency
-          example: "37263.04"
+          format: int32
         dmbtr:
-          type: string
+          type: integer
           description: Amount in Company Code Currency
-          example: "15234.83"
+          format: int32
         sgtxt:
           type: string
           description: Item Text
@@ -170,9 +172,10 @@ components:
           description: Material Number
           example: "1234543212"
         menge:
-          type: string
+          type: integer
           description: Quantity
-          example: "1"
+          format: int32
+          example: 1
         meins:
           type: string
           description: ISO Code of Base Unit of Measure
@@ -216,6 +219,7 @@ components:
         zfbdt:
           type: string
           description: Assignment Number
+          format: date
           example: 2020-07-01
         zlsch:
           type: string
@@ -255,21 +259,21 @@ components:
           description: Tax Jurisdiction Code
           example: TAXUSJ
         fwste:
-          type: string
+          type: integer
           description: Amount in Document Currency
-          example: "0.00"
+          format: int32
         fwbas:
-          type: string
+          type: integer
           description: Tax Base Amount in Transaction Currency
-          example: "37263.04"
+          format: int32
         hwste:
-          type: string
+          type: integer
           description: Amount in Company Code Currency
-          example: "0.00"
+          format: int32
         hwbas:
-          type: string
+          type: integer
           description: Tax Base Amount in Company Code Currency
-          example: "37263.04"
+          format: int32
       xml:
         name: Tax
     ReturnCode:
