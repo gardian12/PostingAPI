@@ -78,6 +78,7 @@ components:
         name: Control
     Posting:
       required:
+      - belnr
       - blart
       - bldat
       - budat
@@ -85,6 +86,10 @@ components:
       - waers
       type: object
       properties:
+        belnr:
+          type: string
+          description: Accounting Document Number
+          example: "1234567890"
         xblnr:
           type: string
           description: Reference Document Number
@@ -106,7 +111,7 @@ components:
           type: string
           description: Posting Date in Document
           format: date
-          example: 2020-05-25
+          example: 2020-05-09
         bukrs:
           type: string
           description: Company Code
@@ -135,6 +140,7 @@ components:
         name: Posting
     Item:
       required:
+      - newbs
       - newko
       - wrbtr
       type: object
@@ -143,6 +149,10 @@ components:
           type: string
           description: GL Account
           example: "1896123"
+        newbs:
+          type: string
+          description: Posting Key
+          example: "40"
         wrbtr:
           type: integer
           description: Amount in Document Currency
@@ -254,6 +264,10 @@ components:
           type: string
           description: Sales Tax Code
           example: 1V
+        bschl:
+          type: string
+          description: Posting Key
+          example: "40"
         txjcd:
           type: string
           description: Tax Jurisdiction Code
