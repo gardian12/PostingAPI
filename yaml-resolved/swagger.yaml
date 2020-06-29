@@ -38,22 +38,95 @@ paths:
         required: true
       responses:
         "200":
-          description: successful operation
+          description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReturnCode'
               example:
                 code: 200
-                message: successful operation
+                message: Successful operation
             application/xml:
               schema:
                 $ref: '#/components/schemas/ReturnCode'
               example:
                 code: 200
-                message: successful operation
-        "400":
-          description: bad input parameter
+                message: Successful operation
+        "401":
+          description: Authorization information is missing or invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReturnCode'
+              example:
+                code: 401
+                message: Authorization information is missing or invalid
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReturnCode'
+              example:
+                code: 401
+                message: Authorization information is missing or invalid
+        "405":
+          description: HTTP method not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReturnCode'
+              example:
+                code: 405
+                message: HTTP method not allowed
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReturnCode'
+              example:
+                code: 405
+                message: HTTP method not allowed
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReturnCode'
+              example:
+                code: 500
+                message: Internal server error
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReturnCode'
+              example:
+                code: 500
+                message: Internal server error
+        "501":
+          description: Service not implemented.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReturnCode'
+              example:
+                code: 501
+                message: Service not implemented
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReturnCode'
+              example:
+                code: 501
+                message: Service not implemented
+        "5XX":
+          description: Server error. Please see detailed return message.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReturnCode'
+              example:
+                code: 503
+                message: Service unavailable
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReturnCode'
+              example:
+                code: 503
+                message: Service unavailable
 components:
   schemas:
     Control:
@@ -68,7 +141,7 @@ components:
           example: Innosys
         simulate:
           type: boolean
-          description: Posting simultation
+          description: Posting simulation
           example: false
         postings:
           type: array
@@ -78,7 +151,6 @@ components:
         name: Control
     Posting:
       required:
-      - belnr
       - blart
       - bldat
       - budat
@@ -140,7 +212,6 @@ components:
         name: Posting
     Item:
       required:
-      - newbs
       - newko
       - wrbtr
       type: object
@@ -154,13 +225,13 @@ components:
           description: Posting Key
           example: "40"
         wrbtr:
-          type: integer
+          type: string
           description: Amount in Document Currency
-          format: int32
+          example: "5273.43"
         dmbtr:
-          type: integer
+          type: string
           description: Amount in Company Code Currency
-          format: int32
+          example: "21465.18"
         sgtxt:
           type: string
           description: Item Text
@@ -177,15 +248,18 @@ components:
           type: string
           description: Tax Jurisdiction Code
           example: TAXUSJ
+        gsber:
+          type: string
+          description: Business Area
+          example: A1
         matnr:
           type: string
           description: Material Number
           example: "1234543212"
         menge:
-          type: integer
+          type: string
           description: Quantity
-          format: int32
-          example: 1
+          example: "1"
         meins:
           type: string
           description: ISO Code of Base Unit of Measure
@@ -201,11 +275,15 @@ components:
         kostl:
           type: string
           description: Cost Center
-          example: "2020"
+          example: "5609"
         projk:
           type: string
           description: Work Breakdown Structure Element (WBS Element)
           example: A1002020202020200989
+        bewar:
+          type: string
+          description: Transaction Type
+          example: "020"
         aufnr:
           type: string
           description: Internal Order Number
@@ -228,7 +306,7 @@ components:
           example: A1
         zfbdt:
           type: string
-          description: Assignment Number
+          description: Baseline Date for Due Date Calculation
           format: date
           example: 2020-07-01
         zlsch:
@@ -255,6 +333,18 @@ components:
           type: string
           description: Terms of Payment Key
           example: "0001"
+        xref1:
+          type: string
+          description: Business Partner Reference Key 1
+          example: R:12345
+        xref2:
+          type: string
+          description: Business Partner Reference Key 2
+          example: "123234"
+        xref3:
+          type: string
+          description: Reference Key For Line Item
+          example: "22222222"
       xml:
         name: Item
     Tax:
@@ -273,21 +363,21 @@ components:
           description: Tax Jurisdiction Code
           example: TAXUSJ
         fwste:
-          type: integer
+          type: string
           description: Amount in Document Currency
-          format: int32
+          example: "8765.87"
         fwbas:
-          type: integer
+          type: string
           description: Tax Base Amount in Transaction Currency
-          format: int32
+          example: "921.43"
         hwste:
-          type: integer
+          type: string
           description: Amount in Company Code Currency
-          format: int32
+          example: "772342.32"
         hwbas:
-          type: integer
+          type: string
           description: Tax Base Amount in Company Code Currency
-          format: int32
+          example: "76423.32"
       xml:
         name: Tax
     ReturnCode:
